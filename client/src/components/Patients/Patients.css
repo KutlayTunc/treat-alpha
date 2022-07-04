@@ -1,0 +1,12 @@
+.patients-container {
+    display: flex;
+   
+    justify-content: center;
+    align-items: center;
+    background: red;
+    height: 80%;
+    width: 80%;
+}
+.patients-item{
+    background: beige;
+}
