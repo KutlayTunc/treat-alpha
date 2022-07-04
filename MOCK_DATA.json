@@ -5,6 +5,7 @@
     "last_name": "Benyon",
     "email": "vbenyon0@npr.org",
     "gender": "Non-binary",
+    "age": "25",
     "ip_address": "188.35.227.24"
   },
   {
@@ -13,7 +14,7 @@
     "last_name": "Hilary",
     "email": "whilary1@studiopress.com",
     "gender": "Female",
-    "ip_address": "168.131.76.3"
+    "age": "21"
   },
   {
     "id": 3,
@@ -21,7 +22,7 @@
     "last_name": "Rippingale",
     "email": "qrippingale2@yolasite.com",
     "gender": "Female",
-    "ip_address": "18.219.223.228"
+    "age": "12"
   },
   {
     "id": 4,
@@ -29,7 +30,7 @@
     "last_name": "Japp",
     "email": "jjapp3@yahoo.co.jp",
     "gender": "Female",
-    "ip_address": "228.134.156.81"
+    "age": "18"
   },
   {
     "id": 5,
@@ -37,7 +38,7 @@
     "last_name": "De Vries",
     "email": "hdevries4@boston.com",
     "gender": "Male",
-    "ip_address": "59.200.39.59"
+    "age": "34"
   },
   {
     "id": 6,
@@ -45,7 +46,7 @@
     "last_name": "Hansbury",
     "email": "ehansbury5@stanford.edu",
     "gender": "Non-binary",
-    "ip_address": "122.47.115.161"
+    "age": "22"
   },
   {
     "id": 7,
@@ -53,7 +54,7 @@
     "last_name": "Eversfield",
     "email": "meversfield6@dedecms.com",
     "gender": "Non-binary",
-    "ip_address": "134.23.77.249"
+    "age": "53"
   },
   {
     "id": 8,
@@ -61,7 +62,7 @@
     "last_name": "Count",
     "email": "fcount7@redcross.org",
     "gender": "Female",
-    "ip_address": "201.10.165.241"
+    "age": "14"
   },
   {
     "id": 9,
@@ -69,7 +70,7 @@
     "last_name": "Hamelyn",
     "email": "mhamelyn8@nytimes.com",
     "gender": "Female",
-    "ip_address": "218.136.236.180"
+    "age": "26"
   },
   {
     "id": 10,
@@ -77,6 +78,6 @@
     "last_name": "Witcombe",
     "email": "pwitcombe9@hibu.com",
     "gender": "Polygender",
-    "ip_address": "156.65.129.54"
+    "age": "29"
   }
 ]

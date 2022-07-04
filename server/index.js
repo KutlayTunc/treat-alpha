@@ -2,8 +2,11 @@ const express = require("express")
 const cors = require("cors")
 require("dotenv").config()
 const { errorHandler } = require("./middleware/errorMiddleware")
+const connectDB = require("./database/config/db")
+
 const PORT = process.env.PORT
 
+connectDB()
 const app = express()
 
 app.use(express.json())
