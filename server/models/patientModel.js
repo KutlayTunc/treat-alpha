@@ -2,10 +2,17 @@ const mongoose = require("mongoose")
 
 const patientSchema = mongoose.Schema(
   {
-    id: { type: String, required: true },
-    first_name: { type: String, required: true },
-    last_name: { type: String, required: true },
-    age: { type: String, required: true },
+    // id: { type: String, required: true },
+    name: {
+      type: String,
+      required: true,
+    },
+    // age: { type: String, required: true },
+    user: {
+      type: mongoose.Schema.Types.ObjectId,
+      required: true,
+      ref: "User",
+    },
     // gender: { type: String, required: true },
     // phone_number: { type: String, required: true },
     //   email: { type: String, required: true },

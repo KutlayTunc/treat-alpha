@@ -1,9 +1,10 @@
 const asyncHandler = require("express-async-handler")
 
-const Patient = require("../database/models/patientModel")
+const Patient = require("../models/patientModel")
+const User = require("../models/userModel")
 
 const getPatients = asyncHandler(async (req, res) => {
-  const patients = await Patient.find()
+  const patients = await Patient.find({ user: req.user.id })
   res.json(patients)
 })
 
@@ -14,9 +15,9 @@ const setPatient = asyncHandler(async (req, res) => {
   }
   const patient = await Patient.create({
     id: req.body.id,
-    first_name: req.body.first_name,
-    last_name: req.body.last_name,
+    name: req.body.name,
     age: req.body.age,
+    user: req.user.id,
   })
   res.json(patient)
 })
@@ -26,6 +27,20 @@ const updatePatient = asyncHandler(async (req, res) => {
   if (!patient) {
     res.status(400)
     throw new Error("Patient not found!")
+  }
+
+  const user = await User.findById(req.user.id)
+
+  //Chech for user
+  if (!user) {
+    res.status(401)
+    throw new Error("User not found")
+  }
+
+  //Checking login user matches the patient's user
+  if (patient.user.toString() !== user.id) {
+    res.status(401)
+    throw new Error("User not authorized")
   }
 
   const updatedPatient = await Patient.findByIdAndUpdate(
@@ -41,6 +56,20 @@ const deletePatient = asyncHandler(async (req, res) => {
   if (!patient) {
     res.status(400)
     throw new Error("Patient not found!")
+  }
+
+  const user = await User.findById(req.user.id)
+
+  //Chech for user
+  if (!user) {
+    res.status(401)
+    throw new Error("User not found")
+  }
+
+  //Checking login user matches the patient's user
+  if (patient.user.toString() !== user.id) {
+    res.status(401)
+    throw new Error("User not authorized")
   }
 
   await patient.remove()

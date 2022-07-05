@@ -2,7 +2,7 @@ const express = require("express")
 const cors = require("cors")
 require("dotenv").config()
 const { errorHandler } = require("./middleware/errorMiddleware")
-const connectDB = require("./database/config/db")
+const connectDB = require("./config/db")
 
 const PORT = process.env.PORT
 
@@ -12,8 +12,8 @@ const app = express()
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
 
-app.use("/user", require("./routes/user"))
-app.use("/patients", require("./routes/patients"))
+app.use("/api/users", require("./routes/userRoutes"))
+app.use("/api/patients", require("./routes/patientsRoutes"))
 
 app.use(
   cors({

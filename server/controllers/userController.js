@@ -1,51 +1,80 @@
+const jwt = require("jsonwebtoken")
+const bcrypt = require("bcryptjs")
 const asyncHandler = require("express-async-handler")
+const User = require("../models/userModel")
 
-const User = require("../database/models/userModel")
-
-const getUser = asyncHandler(async (req, res) => {
-  const user = await User.find()
-  res.json(user)
-})
-
-const setUser = asyncHandler(async (req, res) => {
-  if (!req.body) {
+const registerUser = asyncHandler(async (req, res) => {
+  const { name, email, password } = req.body
+  if (!name || !email || !password) {
     res.status(400)
-    throw new Error("Error handling denemesi!")
+    throw new Error("Please add all fields")
   }
+
+  const userExist = await User.findOne({ email })
+  if (userExist) {
+    res.status(400)
+    throw new Error("User already exist!")
+  }
+
+  //Hash password
+  const salt = await bcrypt.genSalt(10)
+  const hashedPassword = await bcrypt.hash(password, salt)
+  //Create user
 
   const user = await User.create({
-    id: req.body.id,
-    first_name: req.body.first_name,
-    last_name: req.body.last_name,
-    age: req.body.age,
+    name,
+    email,
+    password: hashedPassword,
   })
-  res.json(user)
+
+  if (user) {
+    res.json({
+      _id: user.id,
+      name: user.name,
+      email: user.email,
+      token: generateToken(user._id),
+    })
+  } else {
+    res.status(400)
+    throw new Error("Invalid user data")
+  }
 })
 
-const updateUser = asyncHandler(async (req, res) => {
-  const user = await User.findById(req.params.id)
-  if (!user) {
+const loginUser = asyncHandler(async (req, res) => {
+  const { email, password } = req.body
+
+  //Check ffor user email
+  const user = await User.findOne({ email })
+
+  if (user && (await bcrypt.compare(password, user.password))) {
+    res.json({
+      _id: user.id,
+      name: user.name,
+      email: user.email,
+      token: generateToken(user._id),
+    })
+  } else {
     res.status(400)
-    throw new Error("User not found")
+    throw new Error("Invalid credentials")
   }
-  const updatedUser = await User.findByIdAndUpdate(req.params.id, req.body, {
-    new: true,
-  })
-  res.json(updatedUser)
 })
 
-const deleteUser = asyncHandler(async (req, res) => {
-  const user = await User.findById(req.params.id)
-  if (!user) {
-    res.status(400)
-    throw new Error("User not found!")
-  }
-  await user.remove
+const getMe = asyncHandler(async (req, res) => {
+  const { _id, name, email } = await User.findById(req.user.id)
+  res.json({
+    id: _id,
+    name,
+    email,
+  })
 })
+
+//Generate JWT
+const generateToken = (id) => {
+  return jwt.sign({ id }, process.env.JWT_SECRET, { expiresIn: "30d" })
+}
 
 module.exports = {
-  getUser,
-  setUser,
-  updateUser,
-  deleteUser,
+  registerUser,
+  loginUser,
+  getMe,
 }
