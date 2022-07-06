@@ -7,43 +7,25 @@ import Main from "./components/Main/Main"
 import Profile from "./components/Profile/Profile"
 import Patients from "./components/Patients/Patients"
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom"
-import { UserProvider } from "./contexts/UserContext"
-import { PatientsProvider } from "./contexts/PatientsContext"
 
 import "./App.css"
 
 function App() {
   return (
-    <UserProvider>
-      <Router>
-        <div className="App">
-          <Header />
-          <Navbar />
-          <Routes>
-            <Route path="/login" element={<Login />} />
-            <Route path="/register" element={<Register />} />
-            <Route path="/main" element={<Main />} />
-            <Route path="/profile" element={<Profile />} />
-            <Route
-              path="/patients"
-              element={
-                <PatientsProvider>
-                  <Patients />
-                </PatientsProvider>
-              }
-            />
-            <Route
-              path="/login"
-              element={
-                <UserProvider>
-                  <Login />
-                </UserProvider>
-              }
-            />
-          </Routes>
-        </div>
-      </Router>
-    </UserProvider>
+    <Router>
+      <div className="App">
+        <Header />
+        <Navbar />
+        <Routes>
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/main" element={<Main />} />
+          <Route path="/profile" element={<Profile />} />
+          <Route path="/patients" element={<Patients />} />
+          <Route path="/login" element={<Login />} />
+        </Routes>
+      </div>
+    </Router>
   )
 }
 
