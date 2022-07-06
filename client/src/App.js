@@ -1,6 +1,8 @@
 import React from "react"
 import Header from "./components/Header/Header"
 import Navbar from "./components/Navbar/Navbar"
+import Login from "./components/Login/Login"
+import Register from "./components/Register/Register"
 import Main from "./components/Main/Main"
 import Profile from "./components/Profile/Profile"
 import Patients from "./components/Patients/Patients"
@@ -18,7 +20,9 @@ function App() {
           <Header />
           <Navbar />
           <Routes>
-            <Route path="/" element={<Main />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/register" element={<Register />} />
+            <Route path="/main" element={<Main />} />
             <Route path="/profile" element={<Profile />} />
             <Route
               path="/patients"
@@ -26,6 +30,14 @@ function App() {
                 <PatientsProvider>
                   <Patients />
                 </PatientsProvider>
+              }
+            />
+            <Route
+              path="/login"
+              element={
+                <UserProvider>
+                  <Login />
+                </UserProvider>
               }
             />
           </Routes>
