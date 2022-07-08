@@ -29,16 +29,14 @@ const updatePatient = asyncHandler(async (req, res) => {
     throw new Error("Patient not found!")
   }
 
-  const user = await User.findById(req.user.id)
-
   //Chech for user
-  if (!user) {
+  if (!req.user) {
     res.status(401)
     throw new Error("User not found")
   }
 
   //Checking login user matches the patient's user
-  if (patient.user.toString() !== user.id) {
+  if (patient.user.toString() !== req.user.id) {
     res.status(401)
     throw new Error("User not authorized")
   }
@@ -58,16 +56,14 @@ const deletePatient = asyncHandler(async (req, res) => {
     throw new Error("Patient not found!")
   }
 
-  const user = await User.findById(req.user.id)
-
   //Chech for user
-  if (!user) {
+  if (!req.user) {
     res.status(401)
     throw new Error("User not found")
   }
 
   //Checking login user matches the patient's user
-  if (patient.user.toString() !== user.id) {
+  if (patient.user.toString() !== req.user.id) {
     res.status(401)
     throw new Error("User not authorized")
   }
