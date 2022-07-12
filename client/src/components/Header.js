@@ -1,5 +1,5 @@
-import Logo from "../Logo/Logo"
-import Search from "../Search/Search"
+import Logo from "./Logo"
+import Search from "./Search"
 import { useTranslation } from "react-i18next"
 import "./Header.css"
 // import logo from "../../assets/logo.svg"

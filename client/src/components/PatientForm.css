@@ -1,0 +1,23 @@
+.patientform-container {
+   display: flex;
+   flex-direction: column;
+    justify-content: left;
+    align-items: center;
+    background: tomato;
+    height: 80%;
+    width: 80%;
+ }
+ 
+ .patient-item{
+   display: flex;
+   flex-direction: column;
+   flex-direction: center;
+   justify-content: center;
+    margin-top: 10px;
+    background: beige;
+ }
+
+ .submit-patient-button{
+   width: 40px;
+   height: 20px;
+ }
