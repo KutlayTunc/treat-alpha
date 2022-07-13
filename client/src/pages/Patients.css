@@ -4,7 +4,7 @@
     justify-content: left;
     align-items: center;
     background: tomato;
-    height: 80%;
+    height: 60%;
     width: 80%;
 }
 .addButton{
@@ -18,3 +18,9 @@ height: 30px;
 .patients-item{
     background: beige;
 }
+
+.each-patient{
+    display: flex;
+    margin-top: 20px;
+    justify-content: space-between;
+    }

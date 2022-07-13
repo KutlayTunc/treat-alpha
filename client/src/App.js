@@ -1,4 +1,3 @@
-import { useEffect } from "react"
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom"
 import { useSelector } from "react-redux"
 
@@ -21,7 +20,19 @@ import "./App.css"
 
 function App() {
   const { user } = useSelector((state) => state.auth)
+  console.log(user)
 
+  if (!user) {
+    return (
+      <Router>
+        <div className="App">
+          <Routes>
+            <Route path="/*" element={<Login />} />
+          </Routes>
+        </div>
+      </Router>
+    )
+  }
   return (
     <div>
       <Router>
@@ -29,7 +40,6 @@ function App() {
           <Header />
           <Navbar />
           <Routes>
-            <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
             <Route path="/main" element={<Main />} />
             <Route path="/profile" element={<Profile />} />

@@ -64,7 +64,7 @@ const Login = () => {
               id="email"
               name="email"
               value={email}
-              placeHolder="Enter your email"
+              placeholder="Enter your email"
               onChange={onChange}
             />
           </div>{" "}
@@ -75,7 +75,7 @@ const Login = () => {
               id="password"
               name="password"
               value={password}
-              placeHolder="Enter password"
+              placeholder="Enter password"
               onChange={onChange}
             />
           </div>{" "}
