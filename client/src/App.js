@@ -6,15 +6,15 @@ import { ToastContainer } from "react-toastify"
 import "react-toastify/dist/ReactToastify.css"
 
 //Components
-import Header from "./components/Header"
-import Navbar from "./components/Navbar"
+import Header from "./layouts/Header"
+import Navbar from "./layouts/Navbar"
 
 //Pages
-import Login from "./pages/Login"
-import Register from "./pages/Register"
-import Main from "./pages/Main"
-import Profile from "./pages/Profile"
-import Patients from "./pages/Patients"
+import Login from "./components/Login"
+import Register from "./components/Register"
+import Main from "./components/Main"
+import Profile from "./components/Profile"
+import Patients from "./components/Patients"
 
 import "./App.css"
 

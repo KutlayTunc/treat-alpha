@@ -7,7 +7,7 @@ import {
   reset,
 } from "../features/patients/patientsSlice"
 
-import Spinner from "../components/Spinner"
+import Spinner from "../layouts/Spinner"
 import PatientForm from "../components/PatientForm"
 import "./Patients.css"
 

@@ -2,20 +2,17 @@ import { useState, useEffect } from "react"
 import { useSelector, useDispatch } from "react-redux"
 import { useNavigate } from "react-router-dom"
 import { toast } from "react-toastify"
-import { register, reset } from "../features/auth/authSlice"
+import { login, reset } from "../features/auth/authSlice"
 
-import Spinner from "../components/Spinner"
-import "./Register.css"
+import Spinner from "../layouts/Spinner"
+import "./Login.css"
 
-const Register = () => {
+const Login = () => {
   const [formData, setFormData] = useState({
-    name: "",
     email: "",
     password: "",
-    password2: "",
   })
-
-  const { name, email, password, password2 } = formData
+  const { email, password } = formData
 
   const navigate = useNavigate()
   const dispatch = useDispatch()
@@ -45,33 +42,21 @@ const Register = () => {
   }
   const onSubmit = (e) => {
     e.preventDefault()
-    if (password !== password2) {
-      toast.error("Passwords do not match!")
-    } else {
-      const userData = {
-        name,
-        email,
-        password,
-      }
-      dispatch(register(userData))
+
+    const userData = {
+      email,
+      password,
     }
+
+    dispatch(login(userData))
   }
+
   return (
-    <div className="register-container">
-      <div className="register-item">Please create an account</div>
-      <div className="register-item">
+    <div className="login-container">
+      <div className="login-item">Please login</div>
+
+      <div className="login-item">
         <form onSubmit={onSubmit}>
-          <div>
-            <input
-              type="text"
-              className="form-control"
-              id="name"
-              name="name"
-              value={name}
-              placeHolder="Enter your name"
-              onChange={onChange}
-            />
-          </div>
           <div>
             <input
               type="email"
@@ -79,7 +64,7 @@ const Register = () => {
               id="email"
               name="email"
               value={email}
-              placeHolder="Enter your email"
+              placeholder="Enter your email"
               onChange={onChange}
             />
           </div>{" "}
@@ -90,21 +75,10 @@ const Register = () => {
               id="password"
               name="password"
               value={password}
-              placeHolder="Enter password"
+              placeholder="Enter password"
               onChange={onChange}
             />
           </div>{" "}
-          <div>
-            <input
-              type="password"
-              className="form-control"
-              id="pasword2"
-              name="password2"
-              value={password2}
-              placeHolder="Confirm password"
-              onChange={onChange}
-            />
-          </div>
           <div>
             <button type="submit">Submit</button>
           </div>
@@ -114,4 +88,4 @@ const Register = () => {
   )
 }
 
-export default Register
+export default Login
